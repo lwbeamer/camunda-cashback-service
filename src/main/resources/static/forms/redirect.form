@@ -1,0 +1,24 @@
+{
+  "components": [
+    {
+      "label": "Marketplace ID",
+      "type": "number",
+      "layout": {
+        "row": "Row_0y70y95",
+        "columns": null
+      },
+      "id": "Field_1u8m0i6",
+      "key": "marketplaceId",
+      "description": "Enter marketplace id for redirect to them"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1bcgazf",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

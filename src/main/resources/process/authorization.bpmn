@@ -36,7 +36,7 @@
     <bpmn:endEvent id="Event_0x1ttqb" name="Пользоваться сервисом">
       <bpmn:incoming>Flow_0a8zq1j</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0iex4ep" name="Заполните&#10;форму авторизации" camunda:formKey="camunda-forms:/forms/authorization.form">
+    <bpmn:userTask id="Activity_0iex4ep" name="Заполните&#10;форму авторизации" camunda:formKey="camunda-forms:/forms/auth.form">
       <bpmn:incoming>Flow_11wnqpu</bpmn:incoming>
       <bpmn:outgoing>Flow_0ow16t8</bpmn:outgoing>
     </bpmn:userTask>
@@ -98,12 +98,12 @@
         <dc:Bounds x="160" y="80" width="1128" height="708" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0q5yd53_di" bpmnElement="Lane_0q5yd53" isHorizontal="true">
-        <dc:Bounds x="190" y="410" width="1098" height="378" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0s4dum4_di" bpmnElement="Lane_0s4dum4" isHorizontal="true">
         <dc:Bounds x="190" y="80" width="1098" height="330" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0q5yd53_di" bpmnElement="Lane_0q5yd53" isHorizontal="true">
+        <dc:Bounds x="190" y="410" width="1098" height="378" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1m8u7iu_di" bpmnElement="Event_1m8u7iu">
@@ -155,11 +155,11 @@
         <dc:Bounds x="1100" y="110" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1ozfpbf_di" bpmnElement="Event_1ozfpbf">
-        <dc:Bounds x="722" y="212" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1tov1k4_di" bpmnElement="Event_1tov1k4">
         <dc:Bounds x="1012" y="212" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ozfpbf_di" bpmnElement="Event_1ozfpbf">
+        <dc:Bounds x="722" y="212" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ojk78l_di" bpmnElement="Flow_0ojk78l">
         <di:waypoint x="308" y="270" />

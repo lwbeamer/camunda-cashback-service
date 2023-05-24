@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ygo73d" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:collaboration id="Collaboration_0zvv6dt">
+    <bpmn:participant id="Participant_0czjll2" name="Начисление кэшбэка" processRef="Process_0i7qkld" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0i7qkld" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1ns9dfs">
+      <bpmn:lane id="Lane_0s4dum4" name="Сервер(Letyshops)">
+        <bpmn:flowNodeRef>Activity_0l0fw9d</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0ode4jv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_11cy1ap</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:serviceTask id="Activity_0l0fw9d" name="Начисление кэшбека" camunda:delegateExpression="#{addCashback}">
+      <bpmn:incoming>Flow_1diacjl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f4yeuk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0ode4jv">
+      <bpmn:incoming>Flow_0f4yeuk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0f4yeuk" sourceRef="Activity_0l0fw9d" targetRef="Event_0ode4jv" />
+    <bpmn:startEvent id="Event_11cy1ap">
+      <bpmn:outgoing>Flow_1diacjl</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1c7nt9r" messageRef="Message_2n6ei02" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1diacjl" sourceRef="Event_11cy1ap" targetRef="Activity_0l0fw9d" />
+  </bpmn:process>
+  <bpmn:message id="Message_1erokmq" name="PurchaseAddMessage" />
+  <bpmn:message id="Message_2n6ei02" name="PurchaseApproveMessage" />
+  <bpmn:message id="Message_2ntcmpf" name="PurchaseAddMessage" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0zvv6dt">
+      <bpmndi:BPMNShape id="Participant_0czjll2_di" bpmnElement="Participant_0czjll2" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="420" height="150" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0s4dum4_di" bpmnElement="Lane_0s4dum4" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="390" height="150" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1fzx18f" bpmnElement="Activity_0l0fw9d">
+        <dc:Bounds x="330" y="120" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ode4jv_di" bpmnElement="Event_0ode4jv">
+        <dc:Bounds x="482" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rh0dr3_di" bpmnElement="Event_11cy1ap">
+        <dc:Bounds x="247" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="218" y="265" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0f4yeuk_di" bpmnElement="Flow_0f4yeuk">
+        <di:waypoint x="430" y="160" />
+        <di:waypoint x="482" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1diacjl_di" bpmnElement="Flow_1diacjl">
+        <di:waypoint x="283" y="160" />
+        <di:waypoint x="330" y="160" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

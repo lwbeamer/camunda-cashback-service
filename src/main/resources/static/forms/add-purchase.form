@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "label": "Cashback Percent",
+      "type": "number",
+      "layout": {
+        "row": "Row_03pz28o",
+        "columns": null
+      },
+      "id": "Field_1w6667a",
+      "key": "cashbackPercent"
+    },
+    {
+      "label": "Total Price",
+      "type": "number",
+      "layout": {
+        "row": "Row_02xahsc",
+        "columns": null
+      },
+      "id": "Field_1wz23ex",
+      "key": "totalPrice"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1eywdcj",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
