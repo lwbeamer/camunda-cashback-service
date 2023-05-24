@@ -1,0 +1,26 @@
+{
+  "components": [
+    {
+      "label": "Какую информацию вы хотите посмотреть?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0e8r3bn",
+        "columns": null
+      },
+      "id": "Field_0ldeyxm",
+      "key": "info",
+      "validate": {
+        "pattern": "Ожидающий баланс|Текущий баланс|История покупок"
+      }
+    }
+  ],
+  "type": "default",
+  "id": "fetch-form",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

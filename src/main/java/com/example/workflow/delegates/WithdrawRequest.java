@@ -38,7 +38,6 @@ public class WithdrawRequest implements JavaDelegate {
         try {
             withdrawService.sendWithdraw(withdrawDto);
         } catch (RuntimeException e){
-            System.out.println(e.getMessage());
             throw new BpmnError("withdrawRequestError",e.getMessage());
         }
         System.out.println(delegateExecution.getCurrentActivityName());

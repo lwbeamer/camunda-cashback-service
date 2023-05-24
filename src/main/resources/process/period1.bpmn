@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0vtk41d" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:collaboration id="Collaboration_1yrih8c">
+    <bpmn:participant id="Participant_1x1aers" name="Кэшбэк-сервис" processRef="period1" />
+  </bpmn:collaboration>
+  <bpmn:process id="period1" name="Удаление устаревших запросов на вывод" isExecutable="true" camunda:historyTimeToLive="300000">
+    <bpmn:startEvent id="Event_1mzdylm">
+      <bpmn:outgoing>Flow_0bn5uc7</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1c9c9ng">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT30S</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:transaction id="Activity_0g8kq89">
+      <bpmn:incoming>Flow_0bn5uc7</bpmn:incoming>
+      <bpmn:startEvent id="Event_0ls0ixy">
+        <bpmn:outgoing>Flow_0hgf5ht</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_0hgf5ht" sourceRef="Event_0ls0ixy" targetRef="Activity_184dxfa" />
+      <bpmn:serviceTask id="Activity_184dxfa" name="Удаление необработанных устаревших запросов на вывод" camunda:delegateExpression="#{withdrawRequestRemover}">
+        <bpmn:incoming>Flow_0hgf5ht</bpmn:incoming>
+      </bpmn:serviceTask>
+    </bpmn:transaction>
+    <bpmn:sequenceFlow id="Flow_0bn5uc7" sourceRef="Event_1mzdylm" targetRef="Activity_0g8kq89" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1yrih8c">
+      <bpmndi:BPMNShape id="Participant_1x1aers_di" bpmnElement="Participant_1x1aers" isHorizontal="true">
+        <dc:Bounds x="160" y="47" width="600" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1mzdylm_di" bpmnElement="Event_1mzdylm">
+        <dc:Bounds x="212" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g8kq89_di" bpmnElement="Activity_0g8kq89" isExpanded="true">
+        <dc:Bounds x="390" y="77" width="350" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ls0ixy_di" bpmnElement="Event_0ls0ixy">
+        <dc:Bounds x="452" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f65kuj_di" bpmnElement="Activity_184dxfa">
+        <dc:Bounds x="580" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0hgf5ht_di" bpmnElement="Flow_0hgf5ht">
+        <di:waypoint x="488" y="180" />
+        <di:waypoint x="580" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bn5uc7_di" bpmnElement="Flow_0bn5uc7">
+        <di:waypoint x="248" y="177" />
+        <di:waypoint x="390" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

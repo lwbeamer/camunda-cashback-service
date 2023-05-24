@@ -1,0 +1,39 @@
+{
+  "components": [
+    {
+      "label": "Введите номер страницы",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0mvb0p3",
+        "columns": null
+      },
+      "id": "Field_0uudrqu",
+      "key": "page",
+      "validate": {
+        "pattern": "[1-9][0-9]*"
+      }
+    },
+    {
+      "label": "Введите размер страницы",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_10dn3k7",
+        "columns": null
+      },
+      "id": "Field_0lbr48e",
+      "key": "size",
+      "validate": {
+        "pattern": "[1-9][0-9]*"
+      }
+    }
+  ],
+  "type": "default",
+  "id": "page-size-form",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
