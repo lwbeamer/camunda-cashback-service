@@ -23,7 +23,7 @@ public class ApprovePurchase implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         PurchaseApproveDto purchaseApproveDto = new PurchaseApproveDto();
 
-        purchaseApproveDto.setStringIdentifier((String) delegateExecution.getVariable("purchase-string-id"));
+        purchaseApproveDto.setStringIdentifier((String) delegateExecution.getVariable("add-purchase-string-id"));
         purchaseApproveDto.setIsApproved(new Random().nextBoolean());
         purchaseApproveDto.setMarketplaceId(Long.valueOf((Integer) delegateExecution.getVariable("marketplaceId")));
 

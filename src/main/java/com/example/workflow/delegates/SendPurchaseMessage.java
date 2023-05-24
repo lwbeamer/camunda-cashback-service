@@ -15,8 +15,7 @@ public class SendPurchaseMessage implements JavaDelegate {
 
         delegateExecution.getProcessEngineServices().getRuntimeService()
                 .createMessageCorrelation("purchase-msg")
-                .setVariable("purchase-string-id",delegateExecution.getVariable("purchase-string-id"))
-                .setVariable("marketplaceId", delegateExecution.getVariable("marketplaceId"))
+                .setVariable("add-purchase-string-id",delegateExecution.getVariable("add-purchase-string-id"))
                 .correlate();
     }
 }

@@ -34,6 +34,7 @@ public class WithdrawApprove implements JavaDelegate {
         try {
             withdrawService.approveWithdraw(withdrawApproveDto);
         } catch (RuntimeException e){
+            System.out.println(e.getMessage());
             throw new BpmnError("withdraw-approve-error",e.getMessage());
         }
 

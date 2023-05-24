@@ -1,6 +1,7 @@
 package com.example.workflow.delegates;
 
 import com.example.workflow.dto.PurchaseFromMarketplaceDto;
+import com.example.workflow.model.Purchase;
 import com.example.workflow.service.PurchaseService;
 import com.example.workflow.util.IdGenerator;
 import org.camunda.bpm.engine.delegate.BpmnError;
@@ -24,15 +25,16 @@ public class AddPurchase implements JavaDelegate {
         PurchaseFromMarketplaceDto purchase = new PurchaseFromMarketplaceDto();
         purchase.setUsername((String) delegateExecution.getVariable("user_username"));
         purchase.setMarketplaceId((Integer) delegateExecution.getVariable("marketplaceId"));
-        purchase.setCashbackPercent((Double) delegateExecution.getVariable("cashbackPercent"));
-        purchase.setTotalPrice((Double) delegateExecution.getVariable("totalPrice"));
+        purchase.setCashbackPercent((Integer) delegateExecution.getVariable("cashbackPercent"));
+        purchase.setTotalPrice((Integer) delegateExecution.getVariable("totalPrice"));
         purchase.setStringIdentifier(IdGenerator.generateId());
 
         delegateExecution.setVariable("add-purchase-string-id",purchase.getStringIdentifier());
 
 
         try {
-            purchaseService.purchaseAdd(purchase);
+            Purchase p = purchaseService.purchaseAdd(purchase);
+            delegateExecution.setVariable("rulesRespected", p.isRulesRespected());
             delegateExecution.removeVariable("password");
         } catch (RuntimeException e){
             throw new BpmnError("add-purchase-error",e.getMessage());

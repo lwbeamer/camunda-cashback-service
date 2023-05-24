@@ -13,30 +13,42 @@
         <bpmn:flowNodeRef>Activity_1ix4x62</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ode4jv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_15d94nz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0fr4df1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0ag4dai</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0p1udf0</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_0dzv8xo" sourceRef="Event_11cy1ap" targetRef="Activity_0p1udf0" />
     <bpmn:startEvent id="Event_11cy1ap">
       <bpmn:outgoing>Flow_0dzv8xo</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1c7nt9r" messageRef="Message_1endm7e" />
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0dzv8xo" sourceRef="Event_11cy1ap" targetRef="Activity_1ix4x62" />
     <bpmn:serviceTask id="Activity_1ix4x62" name="Подтвердить&#10;покупку" camunda:delegateExpression="#{approvePurchase}">
-      <bpmn:incoming>Flow_0dzv8xo</bpmn:incoming>
+      <bpmn:incoming>Flow_0gdgg6g</bpmn:incoming>
       <bpmn:outgoing>Flow_1xqnxyg</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0ode4jv">
       <bpmn:incoming>Flow_1xqnxyg</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1xqnxyg" sourceRef="Activity_1ix4x62" targetRef="Event_0ode4jv" />
     <bpmn:boundaryEvent id="Event_15d94nz" attachedToRef="Activity_1ix4x62">
       <bpmn:outgoing>Flow_08c7zxi</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_1yhas2p" />
     </bpmn:boundaryEvent>
+    <bpmn:userTask id="Activity_0fr4df1" name="Ввести данные о подтверждении покупки" camunda:formKey="camunda-forms:/forms/redirect.form">
+      <bpmn:incoming>Flow_1l215n5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gdgg6g</bpmn:outgoing>
+    </bpmn:userTask>
     <bpmn:endEvent id="Event_0ag4dai">
       <bpmn:incoming>Flow_08c7zxi</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0gdgg6g" sourceRef="Activity_0fr4df1" targetRef="Activity_1ix4x62" />
+    <bpmn:sequenceFlow id="Flow_1xqnxyg" sourceRef="Activity_1ix4x62" targetRef="Event_0ode4jv" />
     <bpmn:sequenceFlow id="Flow_08c7zxi" sourceRef="Event_15d94nz" targetRef="Event_0ag4dai" />
+    <bpmn:userTask id="Activity_0p1udf0" name="View">
+      <bpmn:incoming>Flow_0dzv8xo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l215n5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1l215n5" sourceRef="Activity_0p1udf0" targetRef="Activity_0fr4df1" />
   </bpmn:process>
   <bpmn:message id="Message_1uog7ra" name="purchase-message" />
   <bpmn:message id="Message_1endm7e" name="purchase-msg" />
@@ -51,36 +63,52 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0rh0dr3_di" bpmnElement="Event_11cy1ap">
-        <dc:Bounds x="292" y="192" width="36" height="36" />
+        <dc:Bounds x="252" y="192" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="218" y="265" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ix4x62_di" bpmnElement="Activity_1ix4x62">
-        <dc:Bounds x="450" y="170" width="100" height="80" />
+        <dc:Bounds x="650" y="170" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ode4jv_di" bpmnElement="Event_0ode4jv">
-        <dc:Bounds x="662" y="192" width="36" height="36" />
+        <dc:Bounds x="822" y="192" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fr4df1_di" bpmnElement="Activity_0fr4df1">
+        <dc:Bounds x="490" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ag4dai_di" bpmnElement="Event_0ag4dai">
-        <dc:Bounds x="592" y="72" width="36" height="36" />
+        <dc:Bounds x="752" y="72" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p1udf0_di" bpmnElement="Activity_0p1udf0">
+        <dc:Bounds x="330" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1wjycug" bpmnElement="Event_15d94nz">
-        <dc:Bounds x="502" y="152" width="36" height="36" />
+        <dc:Bounds x="702" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0dzv8xo_di" bpmnElement="Flow_0dzv8xo">
-        <di:waypoint x="328" y="210" />
-        <di:waypoint x="450" y="210" />
+        <di:waypoint x="288" y="210" />
+        <di:waypoint x="330" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gdgg6g_di" bpmnElement="Flow_0gdgg6g">
+        <di:waypoint x="590" y="210" />
+        <di:waypoint x="650" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1xqnxyg_di" bpmnElement="Flow_1xqnxyg">
-        <di:waypoint x="550" y="210" />
-        <di:waypoint x="662" y="210" />
+        <di:waypoint x="750" y="210" />
+        <di:waypoint x="822" y="210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08c7zxi_di" bpmnElement="Flow_08c7zxi">
-        <di:waypoint x="520" y="152" />
-        <di:waypoint x="520" y="90" />
-        <di:waypoint x="592" y="90" />
+        <di:waypoint x="720" y="152" />
+        <di:waypoint x="720" y="90" />
+        <di:waypoint x="752" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l215n5_di" bpmnElement="Flow_1l215n5">
+        <di:waypoint x="430" y="210" />
+        <di:waypoint x="490" y="210" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

@@ -68,7 +68,7 @@ public class PurchaseService {
         return (Timestamp.from(Instant.now()).getTime() - started) / 1000 <= 300;
     }
 
-    public void purchaseAdd(PurchaseFromMarketplaceDto purchaseFromMarketplaceDto) throws SystemException {
+    public Purchase purchaseAdd(PurchaseFromMarketplaceDto purchaseFromMarketplaceDto) throws SystemException {
         Purchase purchase = new Purchase();
         Redirect redirect = redirectService.getRedirect(purchaseFromMarketplaceDto.getUsername(), purchaseFromMarketplaceDto.getMarketplaceId());
         purchase.setStringIdentifier(purchaseFromMarketplaceDto.getStringIdentifier());
@@ -95,6 +95,7 @@ public class PurchaseService {
                 redirectService.removeRedirect(redirect);
                 log.info("Покупка совершена успешно: "+purchaseFromMarketplaceDto.getStringIdentifier());
                 transactionManager.commit();
+                return purchase;
             } else {
                 throw new NotHandledPurchaseException("Not handled purchase because of time limit");
             }

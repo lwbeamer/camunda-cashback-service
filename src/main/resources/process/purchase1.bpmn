@@ -20,10 +20,11 @@
         <bpmn:flowNodeRef>Activity_1ijkjs3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0364vr1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1bjzg6v</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_1dneake</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_00t97mz</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_13asxoj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_15d94nz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_00t97mz</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ihjawo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1dneake</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_13asxoj</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_0uwh9b8" name="Переход на главную страницу">
@@ -43,11 +44,11 @@
     <bpmn:endEvent id="Event_0uprh18" name="Ошибка авторизации">
       <bpmn:incoming>Flow_1318irv</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_1ijkjs3" name="Выполнение авторизации" camunda:delegateExpression="#{login}">
+    <bpmn:serviceTask id="Activity_1ijkjs3" name="Выполнение авторизации" camunda:delegateExpression="#{marketLogin}">
       <bpmn:incoming>Flow_0wqmted</bpmn:incoming>
       <bpmn:outgoing>Flow_0ewdm2o</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0hvodz9" name="Выполнение авторизации" camunda:delegateExpression="#{login}">
+    <bpmn:serviceTask id="Activity_0hvodz9" name="Выполнение авторизации" camunda:delegateExpression="#{userLogin}">
       <bpmn:incoming>Flow_09i6ep8</bpmn:incoming>
       <bpmn:outgoing>Flow_0gj4664</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -88,20 +89,25 @@
     <bpmn:sequenceFlow id="Flow_0e6k1d1" sourceRef="Gateway_1dneake" targetRef="Event_00t97mz">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rulesRespected == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0th32gv" sourceRef="Gateway_1dneake" targetRef="Event_13asxoj">
+    <bpmn:sequenceFlow id="Flow_0th32gv" sourceRef="Gateway_1dneake" targetRef="Activity_1ihjawo">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${rulesRespected == true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_10ymg3i" sourceRef="Activity_0364vr1" targetRef="Gateway_1dneake" />
+    <bpmn:sequenceFlow id="Flow_0tlwo4t" sourceRef="Activity_1ihjawo" targetRef="Event_13asxoj" />
+    <bpmn:endEvent id="Event_00t97mz">
+      <bpmn:incoming>Flow_0e6k1d1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1ihjawo" name="View">
+      <bpmn:incoming>Flow_0th32gv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tlwo4t</bpmn:outgoing>
+    </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_1dneake" name="Удовлетворят ли правилам?">
       <bpmn:incoming>Flow_10ymg3i</bpmn:incoming>
       <bpmn:outgoing>Flow_0e6k1d1</bpmn:outgoing>
       <bpmn:outgoing>Flow_0th32gv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_00t97mz">
-      <bpmn:incoming>Flow_0e6k1d1</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:endEvent id="Event_13asxoj">
-      <bpmn:incoming>Flow_0th32gv</bpmn:incoming>
+      <bpmn:incoming>Flow_0tlwo4t</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1x9lhsm" messageRef="Message_10g1f96" camunda:delegateExpression="#{sendPurchaseMessage}" />
     </bpmn:endEvent>
   </bpmn:process>
@@ -172,17 +178,21 @@
         <dc:Bounds x="1090" y="500" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_00t97mz_di" bpmnElement="Event_00t97mz">
+        <dc:Bounds x="1502" y="402" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ihjawo_di" bpmnElement="Activity_1ihjawo">
+        <dc:Bounds x="1510" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1dneake_di" bpmnElement="Gateway_1dneake" isMarkerVisible="true">
-        <dc:Bounds x="1465" y="515" width="50" height="50" />
+        <dc:Bounds x="1405" y="515" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1449" y="572" width="86" height="27" />
+          <dc:Bounds x="1389" y="572" width="86" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_00t97mz_di" bpmnElement="Event_00t97mz">
-        <dc:Bounds x="1472" y="402" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_13asxoj_di" bpmnElement="Event_13asxoj">
-        <dc:Bounds x="1602" y="522" width="36" height="36" />
+        <dc:Bounds x="1662" y="522" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1x2ve9q" bpmnElement="Event_1rcaj3o">
         <dc:Bounds x="512" y="182" width="36" height="36" />
@@ -235,16 +245,21 @@
         <di:waypoint x="1250" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0e6k1d1_di" bpmnElement="Flow_0e6k1d1">
-        <di:waypoint x="1490" y="515" />
-        <di:waypoint x="1490" y="438" />
+        <di:waypoint x="1430" y="515" />
+        <di:waypoint x="1430" y="420" />
+        <di:waypoint x="1502" y="420" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0th32gv_di" bpmnElement="Flow_0th32gv">
-        <di:waypoint x="1515" y="540" />
-        <di:waypoint x="1602" y="540" />
+        <di:waypoint x="1455" y="540" />
+        <di:waypoint x="1510" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10ymg3i_di" bpmnElement="Flow_10ymg3i">
         <di:waypoint x="1350" y="540" />
-        <di:waypoint x="1465" y="540" />
+        <di:waypoint x="1405" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tlwo4t_di" bpmnElement="Flow_0tlwo4t">
+        <di:waypoint x="1610" y="540" />
+        <di:waypoint x="1662" y="540" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
