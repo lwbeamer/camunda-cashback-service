@@ -1,0 +1,24 @@
+#spring.datasource.url: jdbc:h2:file:./camunda-h2-database
+
+camunda.bpm.admin-user:
+  id: demo
+  password: demo
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cashback
+    username: postgres
+    password: 2281337
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+
+jwt:
+  header: Authorization
+  secret: topsecrettopsecrettopsecrettopsecret
+  access:
+    expiration: 3600
+  refresh:
+    expiration: 21600

@@ -1,0 +1,39 @@
+{
+  "components": [
+    {
+      "label": "Where are you want to go",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1pmultk",
+        "columns": null
+      },
+      "id": "Field_0zpeqe3",
+      "key": "destination",
+      "validate": {
+        "pattern": "America|France"
+      }
+    },
+    {
+      "label": "How much money you have?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1loi550",
+        "columns": null
+      },
+      "id": "Field_046g7ev",
+      "key": "money",
+      "validate": {
+        "pattern": "[1-9][0-9]."
+      }
+    }
+  ],
+  "type": "default",
+  "id": "prepare",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

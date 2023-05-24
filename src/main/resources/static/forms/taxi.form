@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Enter price",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1wc6o1t",
+        "columns": null
+      },
+      "id": "Field_0883av3",
+      "key": "price"
+    }
+  ],
+  "type": "default",
+  "id": "taxi",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

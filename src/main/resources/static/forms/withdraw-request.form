@@ -1,0 +1,45 @@
+{
+  "components": [
+    {
+      "label": "Сколько хотите вывести?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1tn9so4",
+        "columns": null
+      },
+      "id": "Field_1u2eoo7",
+      "key": "withdraw-amount"
+    },
+    {
+      "label": "Укажите номер способа для вывода",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_06kujp2",
+        "columns": null
+      },
+      "id": "Field_14ktpe5",
+      "key": "payment-method-id",
+      "description": "1/2/3 соответственно для счёта/карты/телефона"
+    },
+    {
+      "label": "Данные для вывода",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_19dnjuf",
+        "columns": null
+      },
+      "id": "Field_1la14pe",
+      "key": "credential",
+      "description": "Номер карты/счёта/телефона"
+    }
+  ],
+  "type": "default",
+  "id": "withdraw-request",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

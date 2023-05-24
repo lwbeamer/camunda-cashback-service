@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Do you want to register? ",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0lscikj",
+        "columns": null
+      },
+      "id": "Field_08trvqo",
+      "key": "isRegister"
+    }
+  ],
+  "type": "default",
+  "id": "is-registered-form",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
